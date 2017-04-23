@@ -1,3 +1,5 @@
 key.*
 .cache
-
+*.pid
+.node_repl_history
+node_modules
