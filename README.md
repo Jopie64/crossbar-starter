@@ -52,7 +52,19 @@ docker run -it --rm crossbario/crossbar-armhf
 Get Crossbar.io version:
 
 ```console
-docker run -it --rm --entrypoint=/usr/local/bin/crossbar crossbario/crossbar-armhf version
+pi@raspberrypi:~ $ docker run -it --rm --entrypoint=/usr/local/bin/crossbar crossbario/crossbar-armhf version
+     __  __  __  __  __  __      __     __
+    /  `|__)/  \/__`/__`|__) /\ |__)  |/  \
+    \__,|  \\__/.__/.__/|__)/~~\|  \. |\__/
+
+ Crossbar.io        : 17.3.1 (Crossbar.io COMMUNITY)
+   Autobahn         : 0.18.1 (with JSON, MessagePack, CBOR, UBJSON)
+   Twisted          : 17.1.0-EPollReactor
+   LMDB             : 0.92/lmdb-0.9.18
+   Python           : 3.6.1/CPython
+ OS                 : Linux-4.4.50-v7+-armv7l-with-debian-8.7
+ Machine            : armv7l
+ Release key        : RWRGxs0uB6vQemWGPeBt7nLG53ADoOtZy/Vve3BjlaXDqkCiVhCs7Zrv
 ```
 
 ### Crossbar.io and Autobahn
