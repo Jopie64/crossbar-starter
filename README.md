@@ -1,5 +1,7 @@
 ## How to start on the Pi
 
+### Preparation
+
 Download [Raspbian Jessie Lite](https://downloads.raspberrypi.org/raspbian_lite_latest), unpack and write the image to a SD card:
 
 ```console
@@ -51,4 +53,35 @@ Get Crossbar.io version:
 
 ```console
 docker run -it --rm --entrypoint=/usr/local/bin/crossbar crossbario/crossbar-armhf version
+```
+
+### Crossbar.io and Autobahn
+
+
+To get the starter template, clone our repo
+
+```console
+cd ~
+git clone https://github.com/crossbario/crossbar-starter.git
+```
+
+In a first terminal, start Crossbar.io
+
+```console
+cd ~/crossbar-starter/crossbar
+make start_armhf
+```
+
+In a second terminal, start Crossbar.io
+
+```console
+cd ~/crossbar-starter/autobahn-python
+make start_armhf
+```
+
+In a third terminal, start Crossbar.io
+
+```console
+cd ~/crossbar-starter/autobahn-js
+make start_armhf
 ```
