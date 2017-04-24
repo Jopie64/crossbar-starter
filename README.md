@@ -43,13 +43,16 @@ Test Docker:
 docker run -it --rm armhf/alpine /bin/sh
 ```
 
-Run Crossbar.io:
+
+### Run Crossbar.io
+
+To run a Docker container with Crossbar.io:
 
 ```console
 docker run -it --rm crossbario/crossbar-armhf
 ```
 
-Get Crossbar.io version:
+To get the Crossbar.io software versions of the packages within the container:
 
 ```console
 pi@raspberrypi:~ $ docker run -it --rm --entrypoint=/usr/local/bin/crossbar crossbario/crossbar-armhf version
@@ -67,8 +70,8 @@ pi@raspberrypi:~ $ docker run -it --rm --entrypoint=/usr/local/bin/crossbar cros
  Release key        : RWRGxs0uB6vQemWGPeBt7nLG53ADoOtZy/Vve3BjlaXDqkCiVhCs7Zrv
 ```
 
-### Crossbar.io and Autobahn
 
+### Crossbar.io and Autobahn
 
 To get the starter template, clone our repo
 
@@ -96,4 +99,33 @@ In a third terminal, start Crossbar.io
 ```console
 cd ~/crossbar-starter/autobahn-js
 make start_armhf
+```
+
+### Development Setup
+
+One way you can do development on the Pi that we find comfortable and relatively hassle free is to mount a working directory from your development notebook on the Pi:
+
+```console
+sudo apt-get install sshfs
+sudo sshfs -o allow_other oberstet@192.168.1.211:/home/oberstet/scm ~/scm
+```
+
+
+### Bundled Images
+
+For the Pi, the following Docker images provided by the Crossbar.io Project will work:
+
+
+```console
+docker pull crossbario/crossbar-armhf:community-cpy3
+docker pull crossbario/autobahn-python-armhf:cpy2
+docker pull crossbario/autobahn-python-armhf:cpy3
+docker pull crossbario/autobahn-python-armhf:pypy2
+docker pull crossbario/autobahn-python-armhf:pypy3
+docker pull crossbario/autobahn-python-armhf:cpy2-minimal-aio
+docker pull crossbario/autobahn-python-armhf:cpy3-minimal-aio
+docker pull crossbario/autobahn-python-armhf:cpy2-minimal-tx
+docker pull crossbario/autobahn-python-armhf:cpy3-minimal-tx
+docker pull crossbario/autobahn-js-armhf:full
+docker pull crossbario/autobahn-js-armhf:alpine
 ```
