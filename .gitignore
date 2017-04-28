@@ -3,3 +3,4 @@ key.*
 *.pid
 .node_repl_history
 node_modules
+.build*

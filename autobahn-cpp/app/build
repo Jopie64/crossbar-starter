@@ -1,0 +1,6 @@
+#!/bin/bash
+
+scons
+find . -type f -executable -exec cp {} /build \;
+strip /build/*
+scons -uc
