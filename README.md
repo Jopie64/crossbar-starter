@@ -1,6 +1,6 @@
-# Crossbar.io and Autobahn Starter Templates
+# Crossbar.io and Autobahn Application Starter Templates
 
-The Crossbar.io and Autobahn starter templates in this repository provide minimal skeletons for Docker based router and application components and workers.
+The Crossbar.io and Autobahn application starter templates in this repository provide minimal skeletons for creating WAMP routers and application components (workers).
 
 The Autobahn starter templates allow development of application code in three languages:
 
@@ -8,14 +8,19 @@ The Autobahn starter templates allow development of application code in three la
 * JavaScript
 * C++
 
-The templates are kept in sync with Crossbar.io, Autobahn and with each other, so you have a complete set of working code to start on.
+and for all four WAMP roles:
 
-All code is liberally licensed under the MIT and can be used in any licensing context.
+* Caller
+* Callee
+* Publisher
+* Subscriber
+
+All templates are Docker based and kept in sync with Crossbar.io, Autobahn and with each other, so you have a complete set of working code that can be run immediately.
+
+The templates are liberally licensed under the MIT and can be used as a starting point in any licensing context.
 
 
 ## How to start
-
-### Crossbar.io
 
 > The following describes running Crossbar.io via Docker, which is the quickest and easiest way. An alternative for running Crossbar.io without Docker is [installation into a Python virtualenv](http://asciinema.org/a/e9jpon411vb7w82c7fpikha6d
 ).
@@ -25,6 +30,8 @@ Assuming you already have Docker, clone the [Crossbar.io Starter Template Reposi
 ```console
 git clone https://github.com/crossbario/crossbar-starter.git
 ```
+
+### Crossbar.io
 
 Then start a new Crossbar.io node from the starter template in a container:
 
