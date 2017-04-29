@@ -1,114 +1,41 @@
-## How to start on the Pi
+# Crossbar.io and Autobahn Starter Templates
 
-### Preparation
+The Crossbar.io and Autobahn starter templates in this repository provide minimal skeletons for Docker based router and application components and workers.
 
+The Autobahn starter templates allow development of application code in three languages:
 
+* Python
+* JavaScript
+* C++
 
-### Run Crossbar.io
+## How to start
 
-To run a Docker container with Crossbar.io:
+### Start Crossbar.io
 
-```console
-docker run -it --rm crossbario/crossbar-armhf
-```
+> The following describes running Crossbar.io via Docker, which is the quickest and easiest way. An alternative for running Crossbar.io without Docker is [installation into a Python virtualenv](http://asciinema.org/a/e9jpon411vb7w82c7fpikha6d
+).
 
-To get the Crossbar.io software versions of the packages within the container:
-
-```console
-pi@raspberrypi:~ $ docker run -it --rm --entrypoint=/usr/local/bin/crossbar crossbario/crossbar-armhf version
-     __  __  __  __  __  __      __     __
-    /  `|__)/  \/__`/__`|__) /\ |__)  |/  \
-    \__,|  \\__/.__/.__/|__)/~~\|  \. |\__/
-
- Crossbar.io        : 17.3.1 (Crossbar.io COMMUNITY)
-   Autobahn         : 0.18.1 (with JSON, MessagePack, CBOR, UBJSON)
-   Twisted          : 17.1.0-EPollReactor
-   LMDB             : 0.92/lmdb-0.9.18
-   Python           : 3.6.1/CPython
- OS                 : Linux-4.4.50-v7+-armv7l-with-debian-8.7
- Machine            : armv7l
- Release key        : RWRGxs0uB6vQemWGPeBt7nLG53ADoOtZy/Vve3BjlaXDqkCiVhCs7Zrv
-```
-
-
-### Crossbar.io and Autobahn
-
-To get the starter template, clone our repo
+Assuming you already have Docker, clone the [Crossbar.io Starter Template Repository](https://github.com/crossbario/crossbar-starter):
 
 ```console
-cd ~
 git clone https://github.com/crossbario/crossbar-starter.git
 ```
 
-In a first terminal, start Crossbar.io
+Then start a new Crossbar.io node from the starter template in a container:
 
 ```console
-cd ~/crossbar-starter/crossbar
-make start_armhf
+cd crossbar-starter/crossbar
+make start
 ```
 
-In a second terminal, start Crossbar.io
+[![asciicast](https://asciinema.org/a/6ufqm00z2xmdb3xdnrrzf4es7.png)](https://asciinema.org/a/6ufqm00z2xmdb3xdnrrzf4es7)
+
+Now go to the JavaScript/NodeJS based template folder and start an AutobahnJS component running on NodeJS and connecting to the Crossbar.io node of above:
 
 ```console
-cd ~/crossbar-starter/autobahn-python
-make start_armhf
+cd crossbar-starter/autobahn-js
+make start
 ```
 
-In a third terminal, start Crossbar.io
+[![asciicast](https://asciinema.org/a/5bd3oco61umd4to8qxfixzbh4.png)](https://asciinema.org/a/5bd3oco61umd4to8qxfixzbh4)
 
-```console
-cd ~/crossbar-starter/autobahn-js
-make start_armhf
-```
-
-### Development Setup
-
-One way you can do development on the Pi that we find comfortable and relatively hassle free is to mount a working directory from your development notebook on the Pi.
-
-Determine the IP address of your notebook on the local network, assuming this is a 192er network:
-
-```console
-oberstet@thinkpad-t430s:~/scm/crossbario/crossbar-starter$ ifconfig | grep 192
-          inet Adresse:192.168.55.138  Bcast:192.168.55.255  Maske:255.255.255.0
-```
-
-Further assuming your working directory is `/home/oberstet/scm`. Then to remotely mount this, login on the Pi and install **sshfs** once:
-
-```console
-sudo apt-get install sshfs
-```
-
-and then mount the remote filesystem from your notebook on the Pi:
-
-```console
-sudo sshfs -o allow_other oberstet@192.168.55.138:/home/oberstet/scm ~/scm
-```
-
-Now, you can move around in the directories on this mountpoint, and effectively you will be browsing your notebook of course.
-
-You can also open and edit files on your notebook using your favorite editor, and the changes will be be reflected on the Pi immediately.
-
-And this is the key for this approach to the development cycle:
-
-- you remotely log into the Pi at the console and start components directly from a mirror of your working directory
-- you open and edit files locally on your notebook using your local editor
-
-
-### Bundled Images
-
-For the Pi, the following Docker images provided by the Crossbar.io Project will work:
-
-
-```console
-docker pull crossbario/crossbar-armhf:community-cpy3
-docker pull crossbario/autobahn-python-armhf:cpy2
-docker pull crossbario/autobahn-python-armhf:cpy3
-docker pull crossbario/autobahn-python-armhf:pypy2
-docker pull crossbario/autobahn-python-armhf:pypy3
-docker pull crossbario/autobahn-python-armhf:cpy2-minimal-aio
-docker pull crossbario/autobahn-python-armhf:cpy3-minimal-aio
-docker pull crossbario/autobahn-python-armhf:cpy2-minimal-tx
-docker pull crossbario/autobahn-python-armhf:cpy3-minimal-tx
-docker pull crossbario/autobahn-js-armhf:full
-docker pull crossbario/autobahn-js-armhf:alpine
-```

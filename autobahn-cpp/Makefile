@@ -46,6 +46,6 @@ file:
 	file .build_aarch64/callee
 
 clean:
-	-sudo rm -rf .build_x86-64/callee
-	-sudo rm -rf .build_armhf/callee
-	-sudo rm -rf .build_aarch64/callee
+	-sudo rm -rf .build_x86-64
+	-sudo rm -rf .build_armhf
+	-sudo rm -rf .build_aarch64
