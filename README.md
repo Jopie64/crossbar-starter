@@ -8,9 +8,14 @@ The Autobahn starter templates allow development of application code in three la
 * JavaScript
 * C++
 
+The templates are kept in sync with Crossbar.io, Autobahn and with each other, so you have a complete set of working code to start on.
+
+All code is liberally licensed under the MIT and can be used in any licensing context.
+
+
 ## How to start
 
-### Start Crossbar.io
+### Crossbar.io
 
 > The following describes running Crossbar.io via Docker, which is the quickest and easiest way. An alternative for running Crossbar.io without Docker is [installation into a Python virtualenv](http://asciinema.org/a/e9jpon411vb7w82c7fpikha6d
 ).
@@ -30,6 +35,9 @@ make start
 
 [![asciicast](https://asciinema.org/a/6ufqm00z2xmdb3xdnrrzf4es7.png)](https://asciinema.org/a/6ufqm00z2xmdb3xdnrrzf4es7)
 
+
+### AutobahnJS
+
 Now go to the JavaScript/NodeJS based template folder and start an AutobahnJS component running on NodeJS and connecting to the Crossbar.io node of above:
 
 ```console
@@ -39,3 +47,7 @@ make start
 
 [![asciicast](https://asciinema.org/a/5bd3oco61umd4to8qxfixzbh4.png)](https://asciinema.org/a/5bd3oco61umd4to8qxfixzbh4)
 
+
+### AutobahnPython
+
+### AutobahnC++
