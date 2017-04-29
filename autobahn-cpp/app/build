@@ -1,6 +1,5 @@
 #!/bin/bash
 
 scons
-find . -type f -executable -exec cp {} /build \;
-strip /build/*
+find . -type f -executable -exec strip {} \; -exec cp {} /build \;
 scons -uc

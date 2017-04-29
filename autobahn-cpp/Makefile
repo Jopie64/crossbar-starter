@@ -1,4 +1,17 @@
-.PHONY: build
+.PHONY: run build
+
+
+run: run_x86-64 run_armhf run_aarch64
+
+run_x86-64: build_x86-64
+	./.build_x86-64 callee
+
+run_armhf: build_armhf
+	./.build_armhf callee
+
+run_aarch64: build_aarch64
+	./.build_aarch64 callee
+
 
 build: build_x86-64 build_armhf build_aarch64 file
 
