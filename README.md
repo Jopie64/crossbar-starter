@@ -1,4 +1,4 @@
-# Crossbar.io and Autobahn Application Starter Templates
+# Application development with Crossbar.io and Autobahn
 
 The Crossbar.io and Autobahn application starter templates in this repository provide minimal skeletons for creating WAMP routers and application components (workers).
 
