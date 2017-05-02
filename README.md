@@ -42,10 +42,14 @@ make start
 
 [![asciicast](https://asciinema.org/a/6ufqm00z2xmdb3xdnrrzf4es7.png)](https://asciinema.org/a/6ufqm00z2xmdb3xdnrrzf4es7)
 
+Now open you browser at [http://localhost:8080](http://localhost:8080).
+
+You should see a welcome page allowing to select one of four roles to try.
+
 
 ### AutobahnJS
 
-Now go to the JavaScript/NodeJS based template folder and start an AutobahnJS component running on NodeJS and connecting to the Crossbar.io node of above:
+Let's start an AutobahnJS component running on NodeJS and connecting to the Crossbar.io node of above:
 
 ```console
 cd crossbar-starter/autobahn-js
@@ -57,4 +61,24 @@ make start
 
 ### AutobahnPython
 
+Here is how to start an AutobahnPython component connecting to the Crossbar.io node of above:
+
+```console
+cd crossbar-starter/autobahn-python
+make start
+```
+
+[![asciicast](https://asciinema.org/a/a4d35xf82ylibi0jqwfje56b0.png)](https://asciinema.org/a/a4d35xf82ylibi0jqwfje56b0)
+
+
 ### AutobahnC++
+
+Here is how to start an AutobahnC++ component connecting to the Crossbar.io node of above:
+
+```console
+cd crossbar-starter/autobahn-cpp
+make build
+make start
+```
+
+[![asciicast](https://asciinema.org/a/aqpejunlkxbk8o4iuaz1lm9x8.png)](https://asciinema.org/a/aqpejunlkxbk8o4iuaz1lm9x8)

@@ -15,4 +15,4 @@ env.Append(LIBPATH=['/usr/lib'])
 
 env.Append(LIBS=['boost_thread', 'boost_system', 'msgpackc'])
 
-env.Program('callee.cpp')
+env.Program('client.cpp')
