@@ -1,19 +1,24 @@
-// Example WAMP client for AutobahnJS connecting to a Crossbar.io WAMP router.
+console.log("Runnning on AutobahnJS ", autobahn.version);
 
-// AutobahnJS, the WAMP client library to connect and talk to Crossbar.io:
-var autobahn = require('autobahn');
+// the URL of the WAMP Router (Crossbar.io)
+//
+var wsuri;
+if (document.location.origin == "file://") {
+   wsuri = "ws://127.0.0.1:8080/ws";
 
-console.log("Running AutobahnJS " + autobahn.version);
+} else {
+   wsuri = (document.location.protocol === "http:" ? "ws:" : "wss:") + "//" +
+               document.location.host + "/ws";
+}
 
-// We read the connection parameters from the command line in this example:
-const url = process.env.CBURL;
-const realm = process.env.CBREALM;
 
-// Make us a new connection ..
+// the WAMP connection to the Router
+//
 var connection = new autobahn.Connection({
-   url: url,
-   realm: realm
+   url: wsuri,
+   realm: "realm1"
 });
+
 
 // timers
 //
@@ -27,7 +32,7 @@ connection.onopen = function (session, details) {
    console.log("Connected: ", session, details);
 
    var componentId = details.authid;
-   var componentType = "JavaScript/NodeJS";
+   var componentType = "JavaScript/Browser";
 
    console.log("Component ID is ", componentId);
    console.log("Component tpye is ", componentType);
@@ -43,7 +48,7 @@ connection.onopen = function (session, details) {
       var type = args[2];
 
       console.log("-----------------------");
-      console.log("on_counter event, counter value: ",  counter);
+      console.log("oncounter event, counter value: ",  counter);
       console.log("from component " + id + " (" + type + ")");
 
    }
@@ -105,7 +110,7 @@ connection.onopen = function (session, details) {
 
       function (reg) {
          console.log("-----------------------");
-         console.log('procedure registered');
+         console.log('procedure registered: com.myexample.add2');
       },
 
       function (err) {
@@ -129,7 +134,7 @@ connection.onopen = function (session, details) {
             var id = res[1];
             var type = res[2];
             console.log("-----------------------");
-            console.log("add2() result:", result);
+            console.log("add2 result:", result);
             console.log("from component " + id + " (" + type + ")");
 
          },

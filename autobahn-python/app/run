@@ -1,6 +1,7 @@
 #!/bin/sh
 
-pip install --no-cache -r requirements.txt
+# below only installed to show how to add Python packages into the container
+# pip install --no-cache -r requirements.txt
 
 python -u client_tx.py
 

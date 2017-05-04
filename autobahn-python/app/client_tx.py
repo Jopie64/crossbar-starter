@@ -5,7 +5,12 @@ import txaio
 
 from twisted.internet import reactor
 from twisted.internet.error import ReactorNotRunning
+from twisted.internet.defer import inlineCallbacks
+
+from autobahn.twisted.util import sleep
+from autobahn.wamp.types import RegisterOptions
 from autobahn.twisted.wamp import ApplicationSession, ApplicationRunner
+from autobahn.wamp.exception import ApplicationError
 
 
 class ClientSession(ApplicationSession):
@@ -21,12 +26,64 @@ class ClientSession(ApplicationSession):
         self.log.info("Challenge for method {authmethod} received", authmethod=challenge.method)
         raise Exception("We haven't asked for authentication!")
 
+    @inlineCallbacks
     def onJoin(self, details):
-        self.log.info("Client session joined {details}", details=details)
 
-        # your main app code goes here! eg register procedures, subscribe to topics, etc
+        self.log.info("Connected:  {details}", details=details)
 
-        self.leave()
+        self._ident = details.authid
+        self._type = u'Python'
+
+        self.log.info("Component ID is  {ident}", ident=self._ident)
+        self.log.info("Component type is  {type}", type=self._type)
+
+        # REGISTER
+        def add2(a, b):
+            print('----------------------------')
+            print("add2 called on {}".format(self._ident))
+            return [ a + b, self._ident, self._type]
+
+        yield self.register(add2, u'com.example.add2', options=RegisterOptions(invoke=u'roundrobin'))
+        print('----------------------------')
+        print('procedure registered: com.myexample.add2')
+
+        # SUBSCRIBE
+        def oncounter(counter, id, type):
+            print('----------------------------')
+            self.log.info("'oncounter' event, counter value: {counter}", counter=counter)
+            self.log.info("from component {id} ({type})", id=id, type=type)
+
+        yield self.subscribe(oncounter, u'com.example.oncounter')
+        print('----------------------------')
+        self.log.info("subscribed to topic 'oncounter'")
+
+        x = 0
+        counter = 0
+        while True:
+
+            # CALL
+            try:
+                res = yield self.call(u'com.example.add2', x, 3)
+                print('----------------------------')
+                self.log.info("add2 result: {result}",
+                result=res[0])
+                self.log.info("from component {id} ({type})", id=res[1], type=res[2])
+                x += 1
+            except ApplicationError as e:
+                ## ignore errors due to the frontend not yet having
+                ## registered the procedure we would like to call
+                if e.error != 'wamp.error.no_such_procedure':
+                    raise e
+
+            # PUBLISH
+            yield self.publish(u'com.example.oncounter', counter, self._ident, self._type)
+            print('----------------------------')
+            self.log.info("published to 'oncounter' with counter {counter}",
+                          counter=counter)
+            counter += 1
+
+            yield sleep(2)
+
 
     def onLeave(self, details):
         self.log.info("Router session closed ({details})", details=details)
