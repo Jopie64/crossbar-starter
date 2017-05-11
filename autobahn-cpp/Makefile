@@ -9,7 +9,7 @@ qemu_deps:
 
 
 # build all architectures
-build_all: build_x86-64 build_armhf build_aarch64 file
+build_all: build build_armhf build_aarch64 file
 
 # build for x86-64
 build:
@@ -40,7 +40,7 @@ build_aarch64:
 
 
 # test all architectures
-start_all: start_x86-64 start_armhf start_aarch64
+start_all: start start_armhf start_aarch64
 
 # test for x86-64
 start:
